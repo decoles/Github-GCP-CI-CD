@@ -8,11 +8,15 @@ on:
 
 jobs:
 
-  build:
-
+  buildDocker:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . -t decoles/liatrio-excercise
+  
+  apprenticeAction:
+    runs-on: ubuntu-latest
+    steps:
+    - name: run tests
+      uses: liatrio/github-actions/apprentice-action@master
