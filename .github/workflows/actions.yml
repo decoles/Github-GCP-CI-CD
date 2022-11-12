@@ -37,6 +37,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/decoles-liatrio-excercise:latest
+      - name: run tests
+        uses: liatrio/github-actions/apprentice-action@master
 
   apprenticeAction:
     runs-on: ubuntu-latest
