@@ -1,6 +1,6 @@
 # Use the latest LTS version of Node.js
 FROM node:18 
-FROM us.gcr.io/cloud-builders/docker
+
 # Create app directory
 WORKDIR /usr/src/app
 
