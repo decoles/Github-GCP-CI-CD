@@ -1,5 +1,12 @@
-steps:
+name: 'cloudbuild'
 
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push',  'us.gcr.io/${PROJECT_ID}/liatrio-excercise:LATEST']
 
