@@ -12,8 +12,6 @@ steps:
            
   # Entrypoint, timeout and environment variables
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    args: [ 'config', 'set', 'compute/zone', 'us-west1-b']
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     timeout: 240s
     args: ['compute', 'instances', 
