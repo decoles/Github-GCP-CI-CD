@@ -7,14 +7,25 @@ on:
     branches: [ "main" ]
 
 steps:
+  # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push',  'us.gcr.io/${PROJECT_ID}/liatrio-excercise:LATEST']
+    args: ['build', '-t', 
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage', 
+           '.']
 
-  # Deploy to Cloud Run
-  - name: google/cloud-sdk
-    args: ['gcloud', 'run', 'deploy', 'helloworld-${SHORT_SHA}', 
-           '--image=us.gcr.io/${PROJECT_ID}/liatrio-excercise:LATEST', 
-           '--region', 'us-west1', '--platform', 'managed', 
-           '--allow-unauthenticated']
-  # [END cloudbuild_python_deploy_yaml]
-# [END cloudbuild_python_logs_yaml]
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']
+
+  # Entrypoint, timeout and environment variables
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    timeout: 240s
+    args: ['compute', 'instances', 
+           'create-with-container', 'my-vm-name',
+           '--container-image', 
+           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']
+    env:
+      - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
