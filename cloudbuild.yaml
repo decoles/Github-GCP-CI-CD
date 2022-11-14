@@ -9,12 +9,11 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
            'gcr.io/${PROJECT_ID}/decoles-liatrio-excercise:latest']
+  - name: gcr.io/cloud-builders/gcloud
+    args: [ 'config', 'set', 'compute/zone', 'us-west1-b']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     timeout: 240s
     args: ['compute', 'instances', 
            'update-container', 'instance-1',
            '--container-image=gcr.io/${PROJECT_ID}/decoles-liatrio-excercise:latest']
-    env:
-      - 'CLOUDSDK_COMPUTE_REGION=us-west1'
-      - 'CLOUDSDK_COMPUTE_ZONE=us-west1-b'
