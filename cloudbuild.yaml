@@ -10,7 +10,7 @@ steps:
     args: ['push', 
            'gcr.io/${PROJECT_ID}/decoles-liatrio-excercise:latest']
            
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     args: [ 'config', 'set', 'compute/zone', 'us-west1-b']
     
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
