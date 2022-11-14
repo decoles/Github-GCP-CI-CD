@@ -2,22 +2,10 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'gcr.io/${PROJECT_ID}/decoles-liatrio-excercise:LATEST', 
+           'gcr.io/${PROJECT_ID}/decoles-liatrio-excercise:latest', 
            '.']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
-           'gcr.io/${PROJECT_ID}/decoles-liatrio-excercise:LATEST']
-
-  # Entrypoint, timeout and environment variables
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
-    timeout: 240s
-    args: ['compute', 'instances', 
-           'create-with-container', 'my-vm-name',
-           '--container-image', 
-           'gcr.io/${PROJECT_ID}/decoles-liatrio-excercise:LATEST']
-    env:
-      - 'CLOUDSDK_COMPUTE_REGION=us-west1'
-      - 'CLOUDSDK_COMPUTE_ZONE=us-west1-a'
+           'gcr.io/${PROJECT_ID}/decoles-liatrio-excercise:latest']
