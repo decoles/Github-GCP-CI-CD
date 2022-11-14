@@ -2,13 +2,13 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage', 
+           'us.gcr.io/${PROJECT_ID}/liatrio-excercise:LATEST', 
            '.']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
-           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']
+           'us.gcr.io/${PROJECT_ID}/liatrio-excercise:LATEST']
 
   # Entrypoint, timeout and environment variables
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -17,7 +17,7 @@ steps:
     args: ['compute', 'instances', 
            'create-with-container', 'my-vm-name',
            '--container-image', 
-           'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']
+           'us.gcr.io/${PROJECT_ID}/liatrio-excercise:LATEST']
     env:
       - 'CLOUDSDK_COMPUTE_REGION=us-west1'
       - 'CLOUDSDK_COMPUTE_ZONE=us-west1-b'
