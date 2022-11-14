@@ -15,7 +15,7 @@ steps:
     
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
-    timeout: 240s
+    #timeout: 240s
     args: ['compute', 'instances', 
            'update-container', 'instance-1',
            '--container-image', 'gcr.io/${PROJECT_ID}/decoles-liatrio-excercise:latest']
