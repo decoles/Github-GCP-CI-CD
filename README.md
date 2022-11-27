@@ -1,5 +1,3 @@
-# Liatrio Exercise
-
 To run the excercise verify nodejs is installed.
 ```bash
 $sudo apt update
