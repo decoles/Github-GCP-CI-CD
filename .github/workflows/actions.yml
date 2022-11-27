@@ -15,8 +15,6 @@ jobs:
       run: docker build . --file Dockerfile --tag decoles-liatrio-excercise:latest
     - name: run image
       run: docker run -p 80:80 -d decoles-liatrio-excercise:latest
-    - name: run tests
-      uses: liatrio/github-actions/apprentice-action@master
   
   pushToDockerHub:
     runs-on: ubuntu-latest
